@@ -1,0 +1,19 @@
+SQL> create or replace procedure GetRentHistory(propertyid in number) as
+  2  pid number;
+  3  tid number;
+  4  st varchar2(20);
+  5  ed varchar(20);
+  6  r number;
+  7  hi number;
+  8  cursor pop is
+  9  select proid,ten_id,stdate,enddate,rpm,hike from tenantDet where proid=propertyid;
+ 10  begin
+ 11  open pop;
+ 12  loop
+ 13  fetch pop into pid,tid,st,ed,r,hi;
+ 14  exit when pop%notfound;
+ 15  dbms_output.put_line(' Property Id: '||pid||' Tenant Id: '||tid||' Start Date: '||st||' End Date: '||ed||' Rent: '||r||' Hike in rent: '||hi);
+ 16  end loop;
+ 17  close pop;
+ 18  end;
+ 19  /
