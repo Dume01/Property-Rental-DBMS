@@ -1,0 +1,20 @@
+SQL> create or replace procedure GetTenantDetails(pid in number) as
+  2  a number;
+  3  b varchar2(20);
+  4  c number;
+  5  d varchar2(20);
+  6  e varchar2(20);
+  7  f varchar2(20);
+  8  g number;
+  9  cursor www is
+ 10  select aid,name,age,phonenum,stdate,enddate,rpm from userinfo,tenantdet where proid=pid AND ten_id=aid;
+ 11  begin
+ 12  open www;
+ 13  loop
+ 14  fetch www into a,b,c,d,e,f,g;
+ 15  exit when www%notfound;
+ 16  dbms_output.put_line('Aid: '||a||' Name: '||b||' Age: '||c||' Phone no: '||d||' Start date: '||e||' End Date: '||f||' Rent: '||g);
+ 17  end loop;
+ 18  close www;
+ 19  end;
+ 20  /
