@@ -1,0 +1,27 @@
+SQL> create or replace procedure SearchPropertyForRent(locality in varchar2) as      
+  2  pid number;
+  3  plar number;
+  4  tar number;
+  5  yoc number;
+  6  aaa varchar2(100);
+  7  nof number;
+  8  dav varchar2(100);
+  9  rent number;
+ 10  nor number;
+ 11  mid number;
+ 12  oid number;
+ 13  isr number;
+ 14  isc number;
+ 15  cursor poptab is
+ 16  select propid,plinth_ar,totar,year_of_cons,addr,no_of_floor,date_avail,rpm,no_of_rooms,manid,ownid,is_resi,is_comer from propinfo where loc=locality;
+ 17  begin
+ 18  open poptab;
+ 19  loop
+ 20  fetch poptab into pid,plar,tar,yoc,aaa,nof,dav,rent,nor,mid,oid,isr,isc;
+ 21  exit when poptab%notfound;
+ 22  dbms_output.put_line('Property Id:'||pid||' Plinth Area:'||plar||' Total Area:'||tar||' Year of Construction:'||yoc||' Address:'||aaa||' No of Floors: '||nof||' Date Available:'||dav||' Owner Id:'||oid||' Rent:'||rent||' No of 
+Rooms:'||nor||' Manager Id:'||mid||' Comms:'||nor||' Manager Id:'||mid||' Commercial:'||isc||' Residental:'||isr);
+ 23  end loop;
+ 24  close poptab;
+ 25  end;
+ 26  /
