@@ -1,0 +1,17 @@
+create table USERINFO(Aid INT PRIMARY KEY,userID INT,password VARCHAR(100),age INT,Name VARCHAR(100),Dno INT,pincode INT,state VARCHAR(100),city VARCHAR(100),street VARCHAR(100),isten INT,isown INT,isman INT);
+
+create table PROPINFO(propID INT PRIMARY KEY,plinth_Ar INT,TotAr INT,Year_of_Cons INT,Addr VARCHAR(100),No_of_floor INT,Date_avail VARCHAR(100),loc VARCHAR(100),rpm INT,No_of_rooms INT,manid INT,ownid INT,FOREIGN KEY(manid) REFERENCES USERINFO(Aid),FOREIGN KEY(ownid) REFERENCES USERINFO(Aid));
+
+create table tenantDet(ten_id INT,proid INT,stDate VARCHAR(100),EndDate VARCHAR(100),Agency VARCHAR(100),rpm INT,hike INT,FOREIGN KEY(ten_id) REFERENCES USERINFO(Aid),FOREIGN KEY(proid) REFERENCES PROPINFO(propid));
+
+Alter table PROPINFO ADD is_resi INT;
+
+Alter table PROPINFO ADD is_comer INT;
+
+Alter table PROPINFO modify plinth_ar INT NOT NULL; 
+
+Alter table PROPINFO modify totar INT NOT NULL;
+
+Alter table USERINFO ADD phoneNum VARCHAR(100) NOT NULL;
+
+Alter table PROPINFO modify Year_of_cons INT NOT NULL;
